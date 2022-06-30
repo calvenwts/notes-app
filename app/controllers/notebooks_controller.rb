@@ -1,23 +1,29 @@
 class NotebooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_notebook, only: %i[show edit update destroy]
+  before_action :set_base_breadcrumbs, only: %i[show new edit]
 
   # GET /notebooks or /notebooks.json
   def index
     @notebooks = current_user.notebooks
+    add_breadcrumb('Notebooks')
   end
 
   # GET /notebooks/1 or /notebooks/1.json
   def show
+    add_breadcrumb(@notebook.title)
   end
 
   # GET /notebooks/new
   def new
     @notebook = Notebook.new
+    add_breadcrumb('New')
   end
 
   # GET /notebooks/1/edit
   def edit
+    add_breadcrumb(@notebook.title, notebook_path(@notebook))
+    add_breadcrumb('Edit')
   end
 
   # POST /notebooks or /notebooks.json
@@ -59,13 +65,18 @@ class NotebooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_notebook
-      @notebook = current_user.notebooks.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def notebook_params
-      params.require(:notebook).permit(:title)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_notebook
+    @notebook = current_user.notebooks.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def notebook_params
+    params.require(:notebook).permit(:title)
+  end
+
+  def set_base_breadcrumbs
+    add_breadcrumb('Notebooks', notebooks_path)
+  end
 end
