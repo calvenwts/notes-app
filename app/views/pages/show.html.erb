@@ -1,19 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<%= link_to 'Back', @notebook, class: 'btn btn-light mb-3' %>
+<h3>
   <%= @page.title %>
-</p>
+  <%= link_to 'Edit', edit_notebook_page_path(@notebook, @page), class: 'btn btn-outline-primary' %>
+</h3>
 
-<p>
-  <strong>Position:</strong>
-  <%= @page.position %>
-</p>
-
-<p>
-  <strong>Notebook:</strong>
-  <%= @page.notebook_id %>
-</p>
-
-<%= link_to 'Edit', edit_notebook_page_path(@notebook, @page) %> |
-<%= link_to 'Back', @notebook %>
