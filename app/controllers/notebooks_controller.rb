@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# notebook controller
 class NotebooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_notebook, only: %i[show edit update destroy]
@@ -32,7 +35,7 @@ class NotebooksController < ApplicationController
 
     respond_to do |format|
       if @notebook.save
-        format.html { redirect_to notebook_url(@notebook), notice: "Notebook was successfully created." }
+        format.html { redirect_to notebook_url(@notebook), notice: 'Notebook was successfully created.' }
         format.json { render :show, status: :created, location: @notebook }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +48,7 @@ class NotebooksController < ApplicationController
   def update
     respond_to do |format|
       if @notebook.update(notebook_params)
-        format.html { redirect_to notebook_url(@notebook), notice: "Notebook was successfully updated." }
+        format.html { redirect_to notebook_url(@notebook), notice: 'Notebook was successfully updated.' }
         format.json { render :show, status: :ok, location: @notebook }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,7 +62,7 @@ class NotebooksController < ApplicationController
     @notebook.destroy
 
     respond_to do |format|
-      format.html { redirect_to notebooks_url, notice: "Notebook was successfully destroyed." }
+      format.html { redirect_to notebooks_url, notice: 'Notebook was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# pages controller
 class PagesController < ApplicationController
   before_action :set_notebook
   before_action :set_page, only: %i[show edit update destroy]
@@ -6,6 +9,7 @@ class PagesController < ApplicationController
   # GET /pages/1 or /pages/1.json
   def show
     add_breadcrumb(@page.title)
+    @paragraph = @page.paragraphs.build
   end
 
   # GET /pages/new
@@ -27,7 +31,7 @@ class PagesController < ApplicationController
     @page.position = @notebook.get_next_page_position
 
     if @page.save
-      redirect_to notebook_page_path(@notebook, @page), notice: "Page was successfully created."
+      redirect_to notebook_page_path(@notebook, @page), notice: 'Page was successfully created.'
     else
       render :new
     end
@@ -36,7 +40,7 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1 or /pages/1.json
   def update
     if @page.update(page_params)
-      redirect_to notebook_page_path(@notebook, @page), notice: "Page was successfully updated."
+      redirect_to notebook_page_path(@notebook, @page), notice: 'Page was successfully updated.'
     else
       render :edit
     end
@@ -45,11 +49,12 @@ class PagesController < ApplicationController
   # DELETE /pages/1 or /pages/1.json
   def destroy
     @page.destroy
-      redirect_to @notebook, notice: "Page was successfully destroyed."
+    redirect_to @notebook, notice: 'Page was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
   def set_notebook
     @notebook = current_user.notebooks.find(params[:notebook_id])
   end
