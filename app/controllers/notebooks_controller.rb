@@ -32,14 +32,18 @@ class NotebooksController < ApplicationController
   # POST /notebooks or /notebooks.json
   def create
     @notebook = current_user.notebooks.build(notebook_params)
-
     respond_to do |format|
       if @notebook.save
-        format.html { redirect_to notebook_url(@notebook), notice: 'Notebook was successfully created.' }
+        format.html do
+          redirect_to notebook_url(@notebook),
+                      notice: 'Notebook was successfully created.'
+        end
         format.json { render :show, status: :created, location: @notebook }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @notebook.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @notebook.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -62,7 +66,10 @@ class NotebooksController < ApplicationController
     @notebook.destroy
 
     respond_to do |format|
-      format.html { redirect_to notebooks_url, notice: 'Notebook was successfully destroyed.' }
+      format.html do
+        redirect_to notebooks_url,
+                    notice: 'Notebook was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end

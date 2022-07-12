@@ -10,6 +10,7 @@ class PagesController < ApplicationController
   def show
     add_breadcrumb(@page.title)
     @paragraph = @page.paragraphs.build
+    @image_element = @page.image_elements.build
   end
 
   # GET /pages/new
@@ -31,7 +32,8 @@ class PagesController < ApplicationController
     @page.position = @notebook.get_next_page_position
 
     if @page.save
-      redirect_to notebook_page_path(@notebook, @page), notice: 'Page was successfully created.'
+      redirect_to notebook_page_path(@notebook, @page),
+                  notice: 'Page was successfully created.'
     else
       render :new
     end
@@ -40,7 +42,8 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1 or /pages/1.json
   def update
     if @page.update(page_params)
-      redirect_to notebook_page_path(@notebook, @page), notice: 'Page was successfully updated.'
+      redirect_to notebook_page_path(@notebook, @page),
+                  notice: 'Page was successfully updated.'
     else
       render :edit
     end
