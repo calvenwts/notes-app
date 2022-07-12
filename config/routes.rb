@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     resources :pages do
       resources :paragraphs
       resources :image_elements
-      resources :checklists
+      resources :checklists do
+        resources :checklist_items
+      end
     end
   end
   devise_for :users

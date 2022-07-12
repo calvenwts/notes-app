@@ -73,6 +73,36 @@
           </div>
         <% end %>
       </div>
+      <div class="checklist-item-form">
+        <%= form_with(model: [@notebook, @page, checklist, checklist.new_item]) do |form| %>
+        <h5><b>Add a new checklist item</b></h5>
+          <label>Title</label>
+          <%= form.text_field :title, class: 'form-control' %>
+          <div  class="buttons mt-3">
+            <%= form.submit "Save", class: 'btn btn-primary' %>
+            <!-- <a href="#" class="cancel btn btn-light">Cancel</a> -->
+          </div>
+        <% end %>
+      </div>
+      <div class="checklist-items">
+        <table class="table">
+          <tr>
+            <th colspan="2">Title</th>
+          </tr>       
+          <% checklist.checklist_items.each do |checklist_item| %>
+            <% if checklist_item.persisted? %>
+            <tr>
+              <td><%= checklist_item.title %></td>
+              <td>
+                <%= link_to 'Delete',
+                notebook_page_checklist_checklist_item_path(@notebook, @page, checklist, checklist_item),
+                method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
     <% end %>
   <% end %>
 
