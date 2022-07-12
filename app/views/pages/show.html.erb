@@ -4,16 +4,19 @@
     <%= link_to 'Edit', edit_notebook_page_path(@notebook, @page), class: 'btn btn-outline-primary' %>
   </div>
 
-<div>
-  <%= form_with(model: [@notebook, @page, @paragraph]) do |form| %>
-    <%= form.submit "Add Paragraph", class: 'btn btn-primary' %>
-  <% end %>
-  <%= form_with(model: [@notebook, @page, @image_element]) do |form| %>
-    <%= form.submit "Add Image", class: 'btn btn-primary' %>
-  <% end %>
-</div>
-  
+  <div class="d-flex gap-1">
+    <%= form_with(model: [@notebook, @page, @paragraph], html: { class: 'float-left' }) do |form| %>
+      <%= form.submit "Add Paragraph", class: 'btn btn-primary' %>
+    <% end %>
+    <%= form_with(model: [@notebook, @page, @image_element], html: { class: 'float-left' }) do |form| %>
+      <%= form.submit "Add Image", class: 'btn btn-primary' %>
+    <% end %>
+    <%= form_with(model: [@notebook, @page, @checklist], html: { class: 'float-left' }) do |form| %>
+      <%= form.submit "Add Checklist", class: 'btn btn-primary' %>
+    <% end %>
+  </div> 
 </h3>
+
 <div class="col-lg-10 offset-lg-1">
 
   <% @page.paragraphs.each do |paragraph| %>
@@ -54,4 +57,23 @@
       <% end %>
     </div>
   <% end %>
+
+  <% @page.checklists.each do |checklist| %>
+    <% if checklist.persisted? %>
+      <div class="text-content p-4 mb-2">
+        <h4><%= checklist.title %></h4>
+      </div>
+      <div class="form-content d-none p-4 mb-2">
+        <%= form_with(model: [@notebook, @page, checklist]) do |form| %>
+          <label>Checklist title</label>
+          <%= form.text_field :title, class: 'form-control' %>
+          <div  class="buttons mt-3">
+            <%= form.submit "Save", class: 'btn btn-primary' %>
+            <a href="#" class="cancel btn btn-light">Cancel</a>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
 </div>
