@@ -2,6 +2,7 @@
 
 # ChecklistItem Controller
 class ChecklistItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_checklist_item, only: %i[update destroy]
 
   # POST /checklist_items
@@ -9,7 +10,9 @@ class ChecklistItemsController < ApplicationController
     notebook = current_user.notebooks.find(params[:notebook_id])
     page = notebook.pages.find(params[:page_id])
     checklist = page.checklists.find(params[:checklist_id])
-    checklist.checklist_items.create(checklist_item_params)
+    checklist_item = checklist.checklist_items.new(checklist_item_params)
+    checklist_item.status = 'not-started'
+    checklist_item.save
     redirect_to notebook_page_path(notebook, page)
   end
 

@@ -2,6 +2,7 @@
 
 # Paragraph Controller
 class ParagraphsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_paragraph, only: %i[update destroy]
   before_action :set_notebook, only: %i[create update]
   before_action :set_page, only: %i[create update]
