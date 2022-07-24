@@ -14,7 +14,7 @@ Sample Screenshots of the product below:
 
 <img width="1714" alt="image" src="https://user-images.githubusercontent.com/69315554/180652804-95db666e-e267-4427-b404-61e2a21f08da.png">
 
-<img width="1714" alt="image" src="https://user-images.githubusercontent.com/69315554/180652860-0537bc39-dc0e-48e7-a135-14efe95a65ff.png">
+<img width="1714" alt="image" src="https://user-images.githubusercontent.com/69315554/180652952-61386791-e3b4-4da9-87ea-9be78aefdb64.png">
 
 <img width="1714" alt="image" src="https://user-images.githubusercontent.com/69315554/180652383-0e762dab-fef5-43a3-9040-56df4087f66c.png">
 
