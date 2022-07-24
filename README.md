@@ -1,24 +1,20 @@
-# README
+# Note taking app similar to One Note built on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Intention of this project
+* Pick up Ruby on Rails fundamentals
+* Explore rich libraries offered by ruby
+* Utilize Bootstrap design classes
 
-Things you may want to cover:
+Functionality avaliable on this project
+* User Authentication 
+* Mysql database storage
+* CRUD for notes
 
-* Ruby version
+Sample Screenshots of the product below: 
 
-* System dependencies
+<img width="1714" alt="image" src="https://user-images.githubusercontent.com/69315554/180652804-95db666e-e267-4427-b404-61e2a21f08da.png">
 
-* Configuration
+<img width="1714" alt="image" src="https://user-images.githubusercontent.com/69315554/180652860-0537bc39-dc0e-48e7-a135-14efe95a65ff.png">
 
-* Database creation
+<img width="1714" alt="image" src="https://user-images.githubusercontent.com/69315554/180652383-0e762dab-fef5-43a3-9040-56df4087f66c.png">
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
